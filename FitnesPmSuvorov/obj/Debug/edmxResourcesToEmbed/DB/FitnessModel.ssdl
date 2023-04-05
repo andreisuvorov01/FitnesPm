@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище FitnessModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="date_registration" Type="date" Nullable="false" />
+    <Property Name="last_visit" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="subscription">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_account" Type="int" Nullable="false" />
+    <Property Name="id_training" Type="int" Nullable="false" />
+    <Property Name="date_start" Type="date" Nullable="false" />
+    <Property Name="date_end" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="trainig">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="duration" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__subscript__id_ac__5FB337D6">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="subscription" Type="Self.subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="subscription">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__subscript__id_tr__60A75C0F">
+    <End Role="trainig" Type="Self.trainig" Multiplicity="1" />
+    <End Role="subscription" Type="Self.subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trainig">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="subscription">
+        <PropertyRef Name="id_training" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище FitnessModelContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subscription" EntityType="Self.subscription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="trainig" EntityType="Self.trainig" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__subscript__id_ac__5FB337D6" Association="Self.FK__subscript__id_ac__5FB337D6">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="subscription" EntitySet="subscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK__subscript__id_tr__60A75C0F" Association="Self.FK__subscript__id_tr__60A75C0F">
+      <End Role="trainig" EntitySet="trainig" />
+      <End Role="subscription" EntitySet="subscription" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

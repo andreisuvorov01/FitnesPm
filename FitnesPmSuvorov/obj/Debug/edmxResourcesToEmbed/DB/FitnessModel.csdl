@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FitnessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_registration" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="last_visit" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="subscription" Relationship="Self.FK__subscript__id_ac__5FB337D6" FromRole="Account" ToRole="subscription" />
+  </EntityType>
+  <EntityType Name="subscription">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_account" Type="Int32" Nullable="false" />
+    <Property Name="id_training" Type="Int32" Nullable="false" />
+    <Property Name="date_start" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="date_end" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__subscript__id_ac__5FB337D6" FromRole="subscription" ToRole="Account" />
+    <NavigationProperty Name="trainig" Relationship="Self.FK__subscript__id_tr__60A75C0F" FromRole="subscription" ToRole="trainig" />
+  </EntityType>
+  <EntityType Name="trainig">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="duration" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="subscription" Relationship="Self.FK__subscript__id_tr__60A75C0F" FromRole="trainig" ToRole="subscription" />
+  </EntityType>
+  <Association Name="FK__subscript__id_ac__5FB337D6">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="subscription" Type="Self.subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="subscription">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__subscript__id_tr__60A75C0F">
+    <End Role="trainig" Type="Self.trainig" Multiplicity="1" />
+    <End Role="subscription" Type="Self.subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trainig">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="subscription">
+        <PropertyRef Name="id_training" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FitnessEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Account" EntityType="Self.Account" />
+    <EntitySet Name="subscription" EntityType="Self.subscription" />
+    <EntitySet Name="trainig" EntityType="Self.trainig" />
+    <AssociationSet Name="FK__subscript__id_ac__5FB337D6" Association="Self.FK__subscript__id_ac__5FB337D6">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="subscription" EntitySet="subscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK__subscript__id_tr__60A75C0F" Association="Self.FK__subscript__id_tr__60A75C0F">
+      <End Role="trainig" EntitySet="trainig" />
+      <End Role="subscription" EntitySet="subscription" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
