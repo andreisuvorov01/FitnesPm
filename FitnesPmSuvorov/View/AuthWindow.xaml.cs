@@ -26,12 +26,33 @@ namespace FitnesPmSuvorov.View
             
             this.DataContext = new ViewModel.AuthVM();
         }
-
+        
         private void BtnVhod_Click(object sender, RoutedEventArgs e)
         {
 
             (DataContext as AuthVM).password = Password.Password.ToString();
+            AuthVM authVM = new AuthVM();
+            authVM.AuthSuccess += AuthVM_AuthSuccess;
             (DataContext as AuthVM).AuthInApp();
+            this.Close();
+        }
+        private void AuthVM_AuthSuccess(object sender, bool e)
+        {
+            MessageBox.Show("Авторизация прошла успешно!");
+            this.Close();
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

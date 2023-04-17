@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище FitnessModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище FitnessAppModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -16,6 +16,14 @@
           <Property Name="date_registration" Type="date" Nullable="false" />
           <Property Name="last_visit" Type="date" Nullable="false" />
           <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="subscription">
           <Key>
@@ -60,8 +68,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище FitnessModelContainer">
+        <Association Name="FK_Account_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FitnessAppModelContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="subscription" EntityType="Self.subscription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trainig" EntityType="Self.trainig" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__subscript__id_ac__5FB337D6" Association="Self.FK__subscript__id_ac__5FB337D6">
@@ -72,12 +93,16 @@
             <End Role="trainig" EntitySet="trainig" />
             <End Role="subscription" EntitySet="subscription" />
           </AssociationSet>
+          <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FitnessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="FitnessAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -89,7 +114,17 @@
           <Property Name="date_registration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="last_visit" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="Int32" Nullable="false" />
           <NavigationProperty Name="subscription" Relationship="Self.FK__subscript__id_ac__5FB337D6" FromRole="Account" ToRole="subscription" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK_Account_Role" FromRole="Account" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Account_Role" FromRole="Role" ToRole="Account" />
         </EntityType>
         <EntityType Name="subscription">
           <Key>
@@ -125,6 +160,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Account_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__subscript__id_tr__60A75C0F">
           <End Role="trainig" Type="Self.trainig" Multiplicity="1" />
           <End Role="subscription" Type="Self.subscription" Multiplicity="*" />
@@ -137,13 +184,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FitnessPmEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FitnessPmEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="subscription" EntityType="Self.subscription" />
           <EntitySet Name="trainig" EntityType="Self.trainig" />
           <AssociationSet Name="FK__subscript__id_ac__5FB337D6" Association="Self.FK__subscript__id_ac__5FB337D6">
             <End Role="Account" EntitySet="Account" />
             <End Role="subscription" EntitySet="subscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Account" EntitySet="Account" />
           </AssociationSet>
           <AssociationSet Name="FK__subscript__id_tr__60A75C0F" Association="Self.FK__subscript__id_tr__60A75C0F">
             <End Role="trainig" EntitySet="trainig" />
@@ -155,9 +207,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище FitnessModelContainer" CdmEntityContainer="FitnessPmEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FitnessAppModelContainer" CdmEntityContainer="FitnessPmEntities1">
           <EntitySetMapping Name="Account">
-            <EntityTypeMapping TypeName="FitnessModel.Account">
+            <EntityTypeMapping TypeName="FitnessAppModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -166,11 +218,20 @@
                 <ScalarProperty Name="date_registration" ColumnName="date_registration" />
                 <ScalarProperty Name="last_visit" ColumnName="last_visit" />
                 <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="FitnessAppModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role1" ColumnName="role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="subscription">
-            <EntityTypeMapping TypeName="FitnessModel.subscription">
+            <EntityTypeMapping TypeName="FitnessAppModel.subscription">
               <MappingFragment StoreEntitySet="subscription">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_account" ColumnName="id_account" />
@@ -181,7 +242,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="trainig">
-            <EntityTypeMapping TypeName="FitnessModel.trainig">
+            <EntityTypeMapping TypeName="FitnessAppModel.trainig">
               <MappingFragment StoreEntitySet="trainig">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />

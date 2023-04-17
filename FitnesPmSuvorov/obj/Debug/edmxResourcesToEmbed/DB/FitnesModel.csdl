@@ -12,6 +12,8 @@
     <Property Name="last_visit" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="subscription" Relationship="Self.FK__subscript__id_ac__5FB337D6" FromRole="Account" ToRole="subscription" />
+    <Property Name="role" Type="Int32" />
+    <NavigationProperty Name="Role1" Relationship="FitnessModel.FK_Account_Role" FromRole="Account" ToRole="Role" />
   </EntityType>
   <EntityType Name="subscription">
     <Key>
@@ -71,5 +73,30 @@
       <End Role="trainig" EntitySet="trainig" />
       <End Role="subscription" EntitySet="subscription" />
     </AssociationSet>
+    <EntitySet Name="Role" EntityType="FitnessModel.Role" />
+    <AssociationSet Name="FK_Account_Role" Association="FitnessModel.FK_Account_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="role1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Account" Relationship="FitnessModel.FK_Account_Role" FromRole="Role" ToRole="Account" />
+  </EntityType>
+  <Association Name="FK_Account_Role">
+    <End Type="FitnessModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="FitnessModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -12,6 +12,8 @@ namespace FitnesPmSuvorov.ViewModel
 {
     public class AuthVM : BaseVm
     {
+        public event EventHandler<bool> AuthSuccess;
+        public event EventHandler<int> RoleReceived;
         private Account _user;
         private string _BtnVhod = "войти";
 
@@ -31,7 +33,30 @@ namespace FitnesPmSuvorov.ViewModel
             set
             {
                 _password = value;
-                OnpropertyChanged(nameof(Login));
+                OnpropertyChanged(nameof(password));
+            }
+        }
+        public string BtnVhod
+        {
+            get => _BtnVhod;
+            set
+            {
+                _BtnVhod=value;
+                OnpropertyChanged(nameof(BtnVhod));
+            }
+        }
+        public async void GetRoleAndPassToAnotherClass()
+        {
+            try
+            {
+                var role = await DbSingleTone.Db_s.Account.Where(User => User.login == Login).Select(User => User.role).FirstOrDefaultAsync();
+
+                // Отправляем айди роли в другой класс
+                RoleReceived?.Invoke(this, role);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Не удалось получить роль пользователя", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private async Task<bool> Authotize(string Login, string password)
@@ -42,7 +67,9 @@ namespace FitnesPmSuvorov.ViewModel
                 _user = result;
                 if (result != null)
                 {
-                    MessageBox.Show("авторизация прошла успешно", "авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
+                    var role = await DbSingleTone.Db_s.Account.Where(User => User.login == Login).Select(User => User.role).FirstOrDefaultAsync();
+                    AuthSuccess?.Invoke(this, true);
+                    RoleReceived?.Invoke(this, role); // Отправка айди роли в другой класс
                     return true;
                 }
                 else
@@ -50,7 +77,6 @@ namespace FitnesPmSuvorov.ViewModel
                     MessageBox.Show("неверный логин или пароль", "авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
                     return false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -60,12 +86,20 @@ namespace FitnesPmSuvorov.ViewModel
         }
         public async void AuthInApp()
         {
+            BtnVhod = "Подождите...";
             if (await Authotize(Login, password))
             {
                 var authWindow = new AuthWindow();
                 authWindow.Close();
+                AuthSuccess?.Invoke(this, true);
+               
                 var vhod = true;
+                BtnVhod = "Войти";
+                
+
             }
+            BtnVhod = "Войти";
         }
+      
     }
 }

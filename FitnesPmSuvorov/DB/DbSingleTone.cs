@@ -8,6 +8,6 @@ namespace FitnesPmSuvorov.DB
 {
     public static class DbSingleTone
     {
-        public static FitnessPmEntities Db_s = new FitnessPmEntities();
+        public static FitnessPmEntities1 Db_s = new FitnessPmEntities1();
     }
 }

@@ -24,3 +24,11 @@ D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\FitnesPmSuvorov_Con
 D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\App.baml
 D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\AuthWindow.baml
 D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\FitnesPmSuvorov.csproj.CopyComplete
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\TrainingPage.g.cs
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\TrainingPage.baml
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\TranigAddOrEdit.g.cs
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\TranigAddOrEdit.baml
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\AccountPage.g.cs
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\AccountPage.baml
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\AccountAddOrEdit.g.cs
+D:\practice-c\test\FitnesPmSuvorov\FitnesPmSuvorov\obj\Debug\View\AccountAddOrEdit.baml

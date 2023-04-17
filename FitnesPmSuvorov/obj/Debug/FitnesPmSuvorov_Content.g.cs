@@ -8,8 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("db/fitnesmodel.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("db/fitnesmodel.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("db/fitnespmmodel.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("db/fitnespmmodel.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/logo_highres.svg")]
 
 

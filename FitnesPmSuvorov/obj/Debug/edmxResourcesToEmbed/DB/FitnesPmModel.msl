@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище FitnessAppModelContainer" CdmEntityContainer="FitnessPmEntities1">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="FitnessAppModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="date_registration" ColumnName="date_registration" />
+          <ScalarProperty Name="last_visit" ColumnName="last_visit" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="FitnessAppModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="role1" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subscription">
+      <EntityTypeMapping TypeName="FitnessAppModel.subscription">
+        <MappingFragment StoreEntitySet="subscription">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="id_training" ColumnName="id_training" />
+          <ScalarProperty Name="date_start" ColumnName="date_start" />
+          <ScalarProperty Name="date_end" ColumnName="date_end" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trainig">
+      <EntityTypeMapping TypeName="FitnessAppModel.trainig">
+        <MappingFragment StoreEntitySet="trainig">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

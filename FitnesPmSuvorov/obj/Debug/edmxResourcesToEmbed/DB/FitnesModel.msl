@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Account">
       <EntityTypeMapping TypeName="FitnessModel.Account">
         <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="email" ColumnName="email" />
@@ -32,6 +33,14 @@
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="duration" ColumnName="duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="FitnessModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="role1" ColumnName="role" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

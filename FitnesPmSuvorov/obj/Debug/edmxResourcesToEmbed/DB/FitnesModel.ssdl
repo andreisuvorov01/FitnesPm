@@ -11,6 +11,14 @@
     <Property Name="date_registration" Type="date" Nullable="false" />
     <Property Name="last_visit" Type="date" Nullable="false" />
     <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="subscription">
     <Key>
@@ -55,8 +63,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Account_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище FitnessModelContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="subscription" EntityType="Self.subscription" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="trainig" EntityType="Self.trainig" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__subscript__id_ac__5FB337D6" Association="Self.FK__subscript__id_ac__5FB337D6">
@@ -66,6 +87,10 @@
     <AssociationSet Name="FK__subscript__id_tr__60A75C0F" Association="Self.FK__subscript__id_tr__60A75C0F">
       <End Role="trainig" EntitySet="trainig" />
       <End Role="subscription" EntitySet="subscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Account" EntitySet="Account" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

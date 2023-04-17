@@ -46,6 +46,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +67,55 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DB\Account.cs">
+      <DependentUpon>FitnesPmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\FitnesPmModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitnesPmModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\FitnesPmModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitnesPmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\FitnesPmModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitnesPmModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Role.cs">
+      <DependentUpon>FitnesPmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\subscription.cs">
+      <DependentUpon>FitnesPmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\trainig.cs">
+      <DependentUpon>FitnesPmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AccountVM.cs" />
+    <Compile Include="ViewModel\TrainigVM.cs" />
+    <Compile Include="View\AccountAddOrEdit.xaml.cs">
+      <DependentUpon>AccountAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TrainingPage.xaml.cs">
+      <DependentUpon>TrainingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TranigAddOrEdit.xaml.cs">
+      <DependentUpon>TranigAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\AccountAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AuthWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,33 +128,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DB\Account.cs">
-      <DependentUpon>FitnesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DB\DbSingleTone.cs" />
-    <Compile Include="DB\FitnesModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FitnesModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\FitnesModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FitnesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\FitnesModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FitnesModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DB\subscription.cs">
-      <DependentUpon>FitnesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\trainig.cs">
-      <DependentUpon>FitnesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\AuthVM.cs" />
     <Compile Include="ViewModel\BaseVm.cs" />
+    <Compile Include="ViewModel\ListboxVM.cs" />
     <Compile Include="View\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
     </Compile>
@@ -110,6 +139,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\TrainingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TranigAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -129,12 +166,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DB\FitnesModel.edmx">
+    <EntityDeploy Include="DB\FitnesPmModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FitnesModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>FitnesPmModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DB\FitnesModel.edmx.diagram">
-      <DependentUpon>FitnesModel.edmx</DependentUpon>
+    <None Include="DB\FitnesPmModel.edmx.diagram">
+      <DependentUpon>FitnesPmModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -156,17 +193,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\FitnesModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FitnesModel.edmx</DependentUpon>
-      <LastGenOutput>FitnesModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DB\FitnesModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FitnesModel.edmx</DependentUpon>
-      <LastGenOutput>FitnesModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="View\koala.ico" />
+    <Content Include="DB\FitnesPmModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FitnesPmModel.edmx</DependentUpon>
+      <LastGenOutput>FitnesPmModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB\FitnesPmModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FitnesPmModel.edmx</DependentUpon>
+      <LastGenOutput>FitnesPmModel.cs</LastGenOutput>
+    </Content>
     <Content Include="img\logo_highRes.svg" />
     <Resource Include="img\x.png" />
     <Resource Include="img\maximize.png" />

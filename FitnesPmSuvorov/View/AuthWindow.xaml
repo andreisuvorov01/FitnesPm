@@ -5,24 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnesPmSuvorov.View"
         mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         Title="окно авторизации" Height="450" Width="400">
     <Grid Background="#ddd2b4">
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock Text="Логин:" Height="50" HorizontalAlignment="Center" FontSize="32" Foreground="#231f20"/>
-            <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" Text="{Binding Login}" Height="50" Margin="10" Background="#60331a"/>
-        </StackPanel>
+        <Border BorderBrush="#934515" CornerRadius="0,0,20,20"  Background="#934515" MouseDown="Border_MouseDown">
+            <TextBlock Text="Вход" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="28"/>
+        </Border>
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Пароль:" Height="50" HorizontalAlignment="Center" FontSize="32" Foreground="#231f20"/>
-            <PasswordBox Name="Password" Template="{StaticResource PasswordBoxControlTemplate}"  Height="50" Margin="10" Background="#60331a"/>
+            <TextBlock Text="Логин:" Height="50" HorizontalAlignment="Center" FontSize="32" Foreground="#231f20"/>
+            <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" Text="{Binding Login}" Height="50" Margin="10"  Padding="10,15,10,10" Foreground="White" Background="#60331a"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <Button  Style="{StaticResource ButtonStyle}" Name="BtnVhod" Content="{Binding BtnVhod}" Click="BtnVhod_Click"  Foreground="White" HorizontalAlignment="Right" Height="50" Width="100" VerticalAlignment="Center" Margin="10,50,10,10"/>
+            <TextBlock Text="Пароль:" Height="50" HorizontalAlignment="Center" FontSize="32" Foreground="#231f20"/>
+            <PasswordBox Name="Password" Template="{StaticResource PasswordBoxControlTemplate}" Padding="10,15,10,10" Foreground="White" Height="50" Margin="10" Background="#60331a"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button  Style="{StaticResource ButtonStyle}" Name="BtnCancel" Content="отменить" Click="BtnCancel_Click"  Foreground="White" HorizontalAlignment="Left" Height="50" Width="100" VerticalAlignment="Center" Margin="10,50,10,10"/>
+            <Button  Style="{StaticResource ButtonStyle}" Name="BtnVhod" Content="{Binding BtnVhod}" Click="BtnVhod_Click"  Foreground="White" HorizontalAlignment="Right" Height="50" Width="100" VerticalAlignment="Center" Margin="170,50,10,10"/>
+          
         </StackPanel>
     </Grid>
 </Window>

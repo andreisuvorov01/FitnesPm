@@ -27,8 +27,10 @@ namespace FitnesPmSuvorov.DB
         public System.DateTime date_registration { get; set; }
         public System.DateTime last_visit { get; set; }
         public string login { get; set; }
+        public int role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<subscription> subscription { get; set; }
+        public virtual Role Role1 { get; set; }
     }
 }

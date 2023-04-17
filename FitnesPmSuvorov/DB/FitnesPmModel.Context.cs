@@ -13,10 +13,10 @@ namespace FitnesPmSuvorov.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FitnessPmEntities : DbContext
+    public partial class FitnessPmEntities1 : DbContext
     {
-        public FitnessPmEntities()
-            : base("name=FitnessPmEntities")
+        public FitnessPmEntities1()
+            : base("name=FitnessPmEntities1")
         {
         }
     
@@ -26,6 +26,7 @@ namespace FitnesPmSuvorov.DB
         }
     
         public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<subscription> subscription { get; set; }
         public virtual DbSet<trainig> trainig { get; set; }
     }

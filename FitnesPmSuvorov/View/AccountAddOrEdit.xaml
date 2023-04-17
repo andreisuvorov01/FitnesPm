@@ -1,0 +1,69 @@
+﻿<Window x:Class="FitnesPmSuvorov.View.AccountAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitnesPmSuvorov.View"
+        mc:Ignorable="d"
+        Title="AccountAddOrEdit" Height="450" Width="800">
+    <Grid Background="#ddd2b4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderBrush="#934515" CornerRadius="0,0,20,20" Grid.Row="0" Grid.ColumnSpan="3"  Background="#934515" MouseDown="Border_MouseDown">
+            <TextBlock Text="Добавление/редактирование" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="28"/>
+        </Border>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Введите имя пользователя" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="name" Text="{Binding name}" Background="#ddd2b4" BorderBrush="#231f20" BorderThickness="5" Width="200" Height="50" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Введите электронную почту" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="email" Text="{Binding email}" Background="#ddd2b4" BorderBrush="#231f20" BorderThickness="5" Width="200" Height="50" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="Введите пароль" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="password" Text="{Binding password}" Background="#ddd2b4" BorderBrush="#231f20" BorderThickness="5" Width="200" Height="50" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+            <TextBlock Text="Введите дату регистрации" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
+            <DatePicker x:Name="date_registration" Text="{Binding date_registration}" Background="#ddd2b4" BorderBrush="#231f20" BorderThickness="5" Width="200" Height="50" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="последний визит" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
+            <DatePicker x:Name="last_visit" Text="{Binding last_visit}" Background="#ddd2b4" BorderBrush="#231f20" BorderThickness="5" Width="200" Height="50" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2">
+            <TextBlock Text="логин" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="login" Text="{Binding login}" Background="#ddd2b4" BorderBrush="#231f20" BorderThickness="5" Width="200" Height="50" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1">
+            <TextBlock Text="роль" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="role" Text="{Binding role}" Background="#ddd2b4" BorderBrush="#231f20" BorderThickness="5" Width="200" Height="50" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+            <Button  Style="{StaticResource ButtonStyle}" Name="BtnCancel" Content="отменить" Click="BtnCancel_Click"  Foreground="White" HorizontalAlignment="Left" Height="50" Width="100" VerticalAlignment="Center" Margin="70,30,0,20"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="2">
+            <Button  Style="{StaticResource ButtonStyle}" Name="BtnSend" Content="внести изменеия" Click="BtnSend_Click"  Foreground="White" HorizontalAlignment="Right" Height="50" Width="100" VerticalAlignment="Center" Margin="0,30,70,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
